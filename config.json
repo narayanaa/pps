@@ -1,0 +1,295 @@
+{
+  "_description": "Enterprise Web Scraper Configuration with Predefined Profiles",
+  "_version": "2.0",
+  "_profiles_available": ["quick", "balanced", "comprehensive", "enterprise", "tax_gov_ae"],
+  
+  "profiles": {
+    "quick": {
+      "_description": "Quick assessment mode - single page sampling",
+      "_use_case": "Initial site analysis, testing, debugging",
+      "_estimated_time": "30-60 seconds",
+      "max_depth": 0,
+      "follow_links": false,
+      "concurrency": 1,
+      "request_delay": 0.5,
+      "connection_timeout": 10,
+      "retry_tries": 2,
+      "enable_database": false,
+      "enable_content_classification": false,
+      "extract_images": false,
+      "ocr_images": false,
+      "verbose": false
+    },
+    
+    "balanced": {
+      "_description": "Balanced performance for medium-sized sites",
+      "_use_case": "General purpose crawling, moderate sites (50-500 pages)",
+      "_estimated_time": "5-30 minutes",
+      "max_depth": 2,
+      "follow_links": true,
+      "concurrency": 8,
+      "request_delay": 0.3,
+      "connection_timeout": 10,
+      "retry_tries": 3,
+      "enable_database": true,
+      "enable_content_classification": true,
+      "extract_images": true,
+      "ocr_images": false
+    },
+    
+    "comprehensive": {
+      "_description": "Comprehensive crawling with full feature set",
+      "_use_case": "Large sites requiring complete analysis",
+      "_estimated_time": "30 minutes - 2 hours",
+      "max_depth": 3,
+      "follow_links": true,
+      "concurrency": 12,
+      "request_delay": 0.2,
+      "connection_timeout": 15,
+      "retry_tries": 3,
+      "enable_database": true,
+      "enable_content_classification": true,
+      "extract_images": true,
+      "ocr_images": true,
+      "convert_svg": true
+    },
+    
+    "enterprise": {
+      "_description": "Enterprise-grade crawling with maximum performance",
+      "_use_case": "Large-scale production crawling, enterprise sites",
+      "_estimated_time": "1+ hours",
+      "max_depth": 4,
+      "follow_links": true,
+      "concurrency": 20,
+      "request_delay": 0.1,
+      "connection_timeout": 8,
+      "retry_tries": 5,
+      "enable_database": true,
+      "enable_content_classification": true,
+      "extract_images": true,
+      "ocr_images": true,
+      "convert_svg": true,
+      "cache_dir": ".enterprise_cache",
+      "max_retry_attempts": 5,
+      "circuit_breaker_threshold": 20
+    },
+    
+    "tax_gov_ae": {
+      "_description": "Optimized specifically for UAE Tax Authority website",
+      "_use_case": "Government sites, tax.gov.ae domain",
+      "_estimated_time": "15-45 minutes",
+      "max_depth": 2,
+      "follow_links": true,
+      "concurrency": 15,
+      "request_delay": 0.2,
+      "connection_timeout": 8,
+      "retry_tries": 2,
+      "respect_robots": false,
+      "enable_database": true,
+      "enable_content_classification": false,
+      "extract_images": false,
+      "ocr_images": false,
+      "convert_svg": false,
+      "allowed_domains": ["tax.gov.ae"],
+      "allowed_languages": ["en", "ar"],
+      "ignore_file_extensions": ["pdf", "jpg", "png", "gif", "css", "js", "ico", "svg", "woff", "ttf", "mp4", "avi"],
+      "circuit_breaker_threshold": 15,
+      "circuit_breaker_timeout": 60,
+      "log_file": "scraper.log",
+      "verbose": false
+    },
+    
+    "multilingual_comprehensive": {
+      "_description": "Comprehensive multilingual crawling with full language support",
+      "_use_case": "International sites, multilingual content analysis",
+      "_estimated_time": "45 minutes - 3 hours",
+      "max_depth": 3,
+      "follow_links": true,
+      "concurrency": 10,
+      "request_delay": 0.4,
+      "connection_timeout": 12,
+      "retry_tries": 3,
+      "enable_database": true,
+      "enable_content_classification": true,
+      "enable_language_detection": true,
+      "extract_images": true,
+      "ocr_images": true,
+      "allowed_languages": ["en", "ar", "zh", "hi", "te", "ja", "ko"],
+      "language_confidence_threshold": 0.7,
+      "handle_mixed_scripts": true,
+      "normalize_unicode": true
+    }
+  },
+  
+  "scraper": {
+    "_description": "Base configuration - will be merged with selected profile",
+    "url": "https://example.com",
+    "max_depth": 2,
+    "follow_links": true,
+    "request_delay": 0.5,
+    "respect_robots": true,
+    "dynamic_rendering": false,
+    "extract_images": true,
+    "extract_tables": true,
+    "convert_svg": false,
+    "ocr_images": true,
+    "output_format": "json",
+    "output_path": "scraped_output.json",
+    "concurrency": 8,
+    "per_domain_max": 2,
+    "cache_dir": ".cache",
+    "cache_ttl": 86400,
+    "retry_tries": 3,
+    "retry_backoff_seconds": 0.5,
+    "connection_timeout": 10,
+    "verbose": true,
+    
+    "user_agents": [
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.3 Safari/605.1.15",
+      "Mozilla/5.0 (X11; Linux x86_64) Gecko/20100101 Firefox/118.0"
+    ],
+    
+    "proxies": [],
+    "allowed_languages": ["en"],
+    "allowed_domains": [],
+    "ignore_file_extensions": ["pdf", "doc", "docx", "zip", "exe"],
+    "noise_keywords": ["nav", "menu", "footer", "header", "sidebar", "cookie", "advert"],
+    
+    "min_text_len": 30,
+    "similarity_threshold": 3,
+    
+    "enable_circuit_breaker": true,
+    "circuit_breaker_threshold": 5,
+    "circuit_breaker_timeout": 60,
+    
+    "enable_content_classification": true,
+    "enable_database": true,
+    "database_path": "scraper_data.db",
+    "session_id": "default_session",
+    
+    "max_retry_attempts": 3,
+    "retry_delay_base": 1.0,
+    "retry_delay_max": 60.0
+  },
+  
+  "language_support": {
+    "_description": "Multi-language configuration and optimization",
+    "supported_languages": {
+      "arabic": {
+        "code": "ar",
+        "name": "Arabic",
+        "script": "rtl",
+        "encoding": "utf-8",
+        "spacy_model": "ar_core_news_sm",
+        "url_patterns": ["/ar/", "/arabic/", "/عربي/"],
+        "content_selectors": [".arabic-content", ".rtl-content", "[dir='rtl']"],
+        "font_families": ["Tahoma", "Arial Unicode MS", "Noto Sans Arabic"]
+      },
+      "chinese_simplified": {
+        "code": "zh-cn",
+        "name": "Chinese (Simplified)",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "zh_core_web_sm",
+        "url_patterns": ["/zh/", "/cn/", "/chinese/", "/中文/"],
+        "content_selectors": [".chinese-content", ".zh-content"],
+        "font_families": ["SimSun", "Microsoft YaHei", "Noto Sans CJK"]
+      },
+      "chinese_traditional": {
+        "code": "zh-tw",
+        "name": "Chinese (Traditional)",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "zh_core_web_sm",
+        "url_patterns": ["/tw/", "/hk/", "/traditional/", "/繁體/"],
+        "content_selectors": [".traditional-content", ".tw-content"],
+        "font_families": ["PMingLiU", "Microsoft JhengHei", "Noto Sans CJK"]
+      },
+      "hindi": {
+        "code": "hi",
+        "name": "Hindi",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "hi_core_news_sm",
+        "url_patterns": ["/hi/", "/hindi/", "/हिंदी/"],
+        "content_selectors": [".hindi-content", ".devanagari-content"],
+        "font_families": ["Mangal", "Noto Sans Devanagari", "Lohit Devanagari"]
+      },
+      "telugu": {
+        "code": "te",
+        "name": "Telugu",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "te_core_news_sm",
+        "url_patterns": ["/te/", "/telugu/", "/తెలుగు/"],
+        "content_selectors": [".telugu-content", ".te-content"],
+        "font_families": ["Gautami", "Noto Sans Telugu", "Lohit Telugu"]
+      },
+      "japanese": {
+        "code": "ja",
+        "name": "Japanese",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "ja_core_news_sm",
+        "url_patterns": ["/ja/", "/jp/", "/japanese/", "/日本語/"],
+        "content_selectors": [".japanese-content", ".ja-content"],
+        "font_families": ["MS Gothic", "Noto Sans CJK JP", "Hiragino Sans"]
+      },
+      "korean": {
+        "code": "ko",
+        "name": "Korean",
+        "script": "ltr",
+        "encoding": "utf-8",
+        "spacy_model": "ko_core_news_sm",
+        "url_patterns": ["/ko/", "/kr/", "/korean/", "/한국어/"],
+        "content_selectors": [".korean-content", ".ko-content"],
+        "font_families": ["Malgun Gothic", "Noto Sans CJK KR", "Dotum"]
+      }
+    },
+    "language_detection": {
+      "enabled": true,
+      "confidence_threshold": 0.8,
+      "fallback_language": "en",
+      "sample_length": 1000,
+      "multiple_languages": true
+    },
+    "text_processing": {
+      "normalize_unicode": true,
+      "handle_mixed_scripts": true,
+      "preserve_whitespace": true,
+      "rtl_support": true
+    }
+  },
+  
+  "domain_specific": {
+    "_description": "Domain-specific optimizations and patterns",
+    "government_sites": {
+      "patterns": ["/en/", "/taxes/", "/regulations/", "/faqs/"],
+      "exclude_patterns": ["/media/", "/css/", "/js/"],
+      "request_delay": 0.3,
+      "respect_robots": false,
+      "allowed_languages": ["en", "ar"]
+    },
+    "multilingual_sites": {
+      "patterns": ["/en/", "/ar/", "/zh/", "/hi/", "/te/"],
+      "exclude_patterns": ["/media/", "/assets/"],
+      "request_delay": 0.4,
+      "enable_language_detection": true,
+      "allowed_languages": ["en", "ar", "zh", "hi", "te", "ja", "ko"]
+    },
+    "ecommerce_sites": {
+      "patterns": ["/product/", "/category/", "/shop/"],
+      "exclude_patterns": ["/cart/", "/checkout/", "/account/"],
+      "request_delay": 0.5,
+      "extract_images": true,
+      "enable_content_classification": true
+    },
+    "news_sites": {
+      "patterns": ["/article/", "/news/", "/blog/"],
+      "exclude_patterns": ["/ads/", "/widgets/"],
+      "request_delay": 0.2,
+      "max_depth": 3
+    }
+  }
+}

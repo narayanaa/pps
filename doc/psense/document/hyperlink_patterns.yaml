@@ -1,0 +1,15 @@
+url:
+  pattern: "(https?://[^\\s]+)"
+  data_type: "string"
+
+domain:
+  pattern: "https?://([^/]+)"
+  data_type: "string"
+
+file_type:
+  pattern: "\\.([a-zA-Z0-9]+)$"
+  data_type: "string"
+
+anchor_text:
+  pattern: ">(.*?)<"
+  data_type: "string"

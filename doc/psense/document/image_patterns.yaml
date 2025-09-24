@@ -1,0 +1,62 @@
+tin:
+  pattern: r'\bTIN[:\s]*(\d+)'
+  data_type: 'number'
+
+ssn:
+  pattern: r'\bSSN[:\s]*(\d{3}-\d{2}-\d{4})'
+  data_type: 'ssn'
+
+dob:
+  pattern: r'Date of Birth[:\s]*([A-Za-z]+\s\d{1,2},\s\d{4})'
+  data_type: 'date'
+
+expiry:
+  pattern: r'Expiry[:\s]*([A-Za-z]+\s\d{1,2},\s\d{4})'
+  data_type: 'date'
+
+atm_card:
+  pattern: r'Card Number[:\s]*(\d{4}-\d{4}-\d{4}-\d{4})'
+  data_type: 'atm_card'
+
+marks:
+  pattern: r'Marks[:\s]*(\d+)'
+  data_type: 'number'
+
+alphabets:
+  pattern: r'[A-Za-z]+'
+  data_type: 'text'
+
+numerics:
+  pattern: r'\b\d+\b'
+  data_type: 'number'
+
+special_characters:
+  pattern: r'[^\w\s]'
+  data_type: 'symbol'
+
+python_dictionary:
+  pattern: r'{\s*"(\w+)":\s*\d+(\s*,\s*"\w+":\s*\d+)*\s*}'
+  data_type: 'dictionary'
+
+email:
+  pattern: r'[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}'
+  data_type: 'email'
+
+phone_number:
+  pattern: r'\b\d{10}\b|\b\(\d{3}\)\s*\d{3}-\d{4}\b'
+  data_type: 'phone'
+
+currency:
+  pattern: r'\$\d+(,\d{3})*(\.\d{2})?'
+  data_type: 'currency'
+
+dates:
+  pattern: r'\b\d{1,2}/\d{1,2}/\d{2,4}\b'
+  data_type: 'date'
+
+url:
+  pattern: r'(https?://[^\s]+)'
+  data_type: 'url'
+
+alphanumeric:
+  data_type: 'text'

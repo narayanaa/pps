@@ -1,0 +1,89 @@
+# Enterprise Web Scraper Dependencies
+# Version 2.0 - Configuration-Driven Architecture
+
+# Core Dependencies (Required)
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=4.9.0
+pandas>=2.0.0
+simhash>=2.1.0
+Pillow>=10.0.0
+backoff>=2.2.0
+
+# Performance Dependencies (Recommended)
+aiohttp>=3.8.0              # Async HTTP client for performance
+tqdm>=4.66.0                # Progress bars for monitoring
+
+# NLP Dependencies (Optional - for AI features)
+textblob>=0.17.0            # Text processing
+spacy>=3.8.0                # Advanced NLP
+langdetect>=1.0.9           # Language detection
+polyglot>=16.07.04          # Multilingual NLP
+
+# Language Processing (for international content)
+chardet>=5.2.0              # Character encoding detection
+unicodedata2>=15.1.0        # Enhanced Unicode support
+ftfy>=6.1.0                 # Text normalization and fixing
+bidi>=0.4.2                 # Bidirectional text support
+python-bidi>=0.4.2          # RTL text handling
+
+# Language-specific NLP models (install as needed)
+# Arabic: pip install https://github.com/explosion/spacy-models/releases/download/ar_core_news_sm-3.7.0/ar_core_news_sm-3.7.0-py3-none-any.whl
+# Chinese: pip install https://github.com/explosion/spacy-models/releases/download/zh_core_web_sm-3.7.0/zh_core_web_sm-3.7.0-py3-none-any.whl
+# Japanese: pip install https://github.com/explosion/spacy-models/releases/download/ja_core_news_sm-3.7.0/ja_core_news_sm-3.7.0-py3-none-any.whl
+
+# OCR Dependencies (Optional - for image processing)
+opencv-python>=4.12.0       # Computer vision
+pytesseract>=0.3.13         # OCR engine
+easyocr>=1.7.0              # Advanced OCR
+
+# PDF/Document Parsing (Required by parsers)
+pdfplumber>=0.11.0          # PDF text/table extraction
+PyMuPDF>=1.26.0             # fitz binding for PDF rendering/metadata
+camelot-py[cv]>=1.0.0       # Table extraction from PDFs (requires Ghostscript)
+python-docx>=1.1.0          # DOCX parsing
+ebooklib>=0.18.0            # EPUB parsing
+markdown>=3.6               # Markdown to HTML parsing
+numpy>=1.26.0               # Numerical ops used by OCR/processing
+
+# Configuration Dependencies
+PyYAML>=6.0                 # YAML config support
+
+# Optional Enhancement Dependencies
+cairosvg>=2.7.0             # SVG to PNG conversion
+playwright>=1.40.0          # Dynamic rendering
+
+# NLP / Text Correction (Used in PDF parser utils)
+transformers>=4.40.0        # HuggingFace transformers (classification, correction)
+torch>=2.2.0                # Backend for transformers models
+symspellpy>=6.9.0           # Spell correction
+fuzzywuzzy>=0.18.0          # Fuzzy string matching
+python-levenshtein>=0.27.0  # Fast string distance calculations (used by fuzzywuzzy)
+paddleocr>=2.7.0            # OCR pipeline
+paddlepaddle>=2.6.0         # Backend for PaddleOCR
+
+# Development Dependencies (Optional)
+pytest>=7.0.0               # Testing framework
+pytest-asyncio>=0.21.0      # Async testing
+
+# Critical Dependencies for Import Resolution:
+# These packages are essential to resolve import errors discovered during testing:
+#   PyMuPDF (not conflicting fitz package)
+#   symspellpy (text correction utilities)
+#   fuzzywuzzy + python-levenshtein (string matching)
+#   camelot-py (table extraction from PDFs)
+#
+# Installation Commands:
+# Basic installation:
+#   pip install requests beautifulsoup4 lxml pandas simhash Pillow backoff aiohttp tqdm
+#
+# Full installation with all features:
+#   pip install -r requirements.txt
+#
+# NLP setup (after installing spacy):
+#   python -m spacy download en_core_web_sm
+#
+# Note: Some dependencies may require system-level packages:
+# - pytesseract requires Tesseract OCR engine
+# - opencv-python may require additional system libraries
+# - playwright requires browser installation: playwright install

@@ -1,0 +1,22 @@
+{
+  "title": "https://httpbin.org/html",
+  "url": "https://httpbin.org/html",
+  "crawled_at": "2025-09-24T16:01:46.269177",
+  "content_blocks": 3,
+  "links_found": 0,
+  "content": [
+    {
+      "type": "h1",
+      "text": "Herman Melville - Moby-Dick"
+    },
+    {
+      "type": "div",
+      "text": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered o..."
+    },
+    {
+      "type": "p",
+      "text": "Availing himself of the mild, summer-cool weather that now reigned in these latitudes, and in preparation for the peculiarly active pursuits shortly to be anticipated, Perth, the begrimed, blistered o..."
+    }
+  ],
+  "links": []
+}
